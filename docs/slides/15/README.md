@@ -235,7 +235,7 @@ class Terminator extends WindowAdapter {
 
 ## 示例: Containers (top level)
 
-![](http://yp.njuics.cn:7911/Containers1.jpeg)<!-- .element height="60%" width="60%" -->
+![](http://yp.njuics.cn:7911/Containers1.jpeg)<!-- .element height="50%" width="50%" -->
 
 ---
 
@@ -374,7 +374,7 @@ class Terminator extends WindowAdapter {
 
 - <font size=6>对话框是一个临时窗口，可以在其中放置用于得到用户输入的控件。在Swing中，有两个对话框类，它们是JDialog类和JOptionPane类。JDialog类提供构造并管理通用对话框；JOptionPane类给一些常见的对话框提供许多便于使用的选项</font>
 
-- <font size=6>JDialog类是对话框的基类，对话框依赖其他窗口，当它所依赖的窗口消失或最小化时，对话框也将消失；窗口还原时，对话框又会自动恢复。对话框的默认布局为BoarderLayout布局。</font>
+- <font size=6>JDialog类是对话框的基类，对话框依赖其他窗口，当它所依赖的窗口消失或最小化时，对话框也将消失；窗口还原时，对话框又会自动恢复。对话框的默认布局为BorderLayout布局。</font>
 
 
 ---
