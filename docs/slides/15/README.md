@@ -479,6 +479,7 @@ ActionEvent at a predefined rate.
 - JavaBeans
 - Flex
 - SWT
+- JavaFX
 
 ---
 
