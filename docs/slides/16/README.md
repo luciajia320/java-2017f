@@ -53,7 +53,7 @@
 
 > <small>Gamma, Erich, R. Helm, R. Johnson, and J. Vlissides. Design patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley, 1994.</small>
 
-![](http://yp.njuics.cn:7911/DesignPatterns.jpg)<!-- .element height="40%" width="40%" -->
+![](http://yp.njuics.cn:7911/DesignPatterns.jpg)<!-- .element height="30%" width="30%" -->
 
 ---
 
