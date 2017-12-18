@@ -40,7 +40,9 @@
 ## Design Pattern: What?
 
 
-> Christopher Alexander 《A Pattern Language》: "Each pattern describes a problem which occurs over and over again in our environment and then describes the core of the solution to that problem, in such a way that you can use this solution a million times over, without ever doing it the same way twice." 
+> Christopher Alexander: 
+> <small>Each pattern describes a problem which occurs over and over again in our environment and then describes the core of the solution to that problem, in such a way that you can use this solution a million times over, without ever doing it the same way twice.</small> 
+>   -- 《A Pattern Language》
 
 <span style="color:#0099ff">模式本质上是设计经验的文档化。</span><!-- .element: class="fragment" -->
 
@@ -74,6 +76,19 @@
 
 - 解耦
   + 降低复杂性
+
+---
+
+## 遇到过哪些设计模式了？
+
+```java
+  public interface Iterator<E>{
+      boolean hasNext();
+      <E> next();
+      void remove();
+  }
+```
+<span style="color:#0099ff">这是迭代器模式</span><!-- .element: class="fragment" -->
 
 ---
 
@@ -376,6 +391,156 @@ Interface Proxy = (Interface)constructor.newInstance(new Object[] { handler });
 
 
 ---
+
+## 责任链
+
+- 使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。
+- 优点
+  + 降低耦合度：对象仅需知道请求会被“正确”地处理。接收者和发送者都没有对方的明确信息
+  + 增强了给对象指派职责的灵活性
+- 缺点：不保证被接受
+
+---
+
+## 责任链
+
+- Event Bubbling
+
+```java
+public boolean action(Event event, Object obj){
+   if (event.target == btnOK){ doOkBtnAction();}
+   else if (event.target == btnExit) { doExitBtnAction();}
+   else { return super.action(event.obj);}
+   return true;
+}
+```
+
+---
+
+## 命令模式
+
+- 将一个请求封装为一个对象，从而使你可用不同的请求对客户进行参数化
+- 对请求排队或记录请求日志，以及支持undo和redo操作
+- 可将多个Command装配成一个复合Command
+
+---
+
+## 命令模式
+
+- 抽象出待执行的动作以参数化某对象，可以代替“回调”函数
+
+![](http://yp.njuics.cn:7911/Command.png)<!-- .element height="50%" width="50%" -->
+
+<span style="color:#0099ff">使用aCommand将anInvoker和 aReceiver解耦</span><!-- .element: class="fragment" -->
+
+---
+
+## 迭代器模式
+
+- 提供一种方法顺序访问一个聚合对象中各个元素, 而又不需暴露该对象的内部表示。
+- 本质：控制访问聚合对象中的元素！
+
+---
+
+## 迭代器模式
+
+![](http://yp.njuics.cn:7911/Iterator.png)<!-- .element height="50%" width="50%" -->
+
+
+---
+
+## 不同的实现
+
+- <font size=6>宽接口 VS. 窄接口</font>
+  + <font size=6>宽接口：一个聚集的接口提供了可以用来修改聚集元素的方法</font>
+  + <font size=6>窄接口：一个聚集的接口没有提供修改聚集元素的方法</font>
+
+- <font size=6>白箱聚集 VS. 黑箱聚集</font>
+  + <font size=6>白箱聚集：聚集对象为所有对象提供同一个接口(宽接口)</font>
+  + <font size=6>聚集对象为迭代子对象提供一个宽接口，而为其它对象提供一个窄接口。同时保证聚集对象的封装和迭代子功能的实现。</font>
+
+
+---
+
+## 观察者模式
+
+- 也称为publish/subscribe
+- 定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。
+
+
+---
+
+## 观察者模式
+
+![](http://yp.njuics.cn:7911/Observer1.png)<!-- .element height="50%" width="50%" -->
+
+
+---
+
+## 观察者模式
+
+![](http://yp.njuics.cn:7911/Observer2.png)<!-- .element height="50%" width="50%" -->
+
+<span style="color:#0099ff">注意：发出改变请求的Observer对象并不立即更新,而是将其推迟到它从目标得到一个通知之后。Notify不总是由目标对象调用。它也可被一个观察者或其它对象调用。</span><!-- .element: class="fragment" -->
+
+---
+
+## Java Observer
+
+- java.util.Observer (interface)
+- java.util.Observable (class)
+
+![](http://yp.njuics.cn:7911/JavaObserver.png)<!-- .element height="50%" width="50%" -->
+
+---
+
+## 模版方法
+
+- 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+
+---
+
+## 模版方法
+
+- 类行为模式
+
+![](http://yp.njuics.cn:7911/Template.png)<!-- .element height="50%" width="50%" -->
+
+---
+
+## 模版方法
+
+- 固定算法骨架
+
+- 模板方法导致一种反向的控制结构
+
+- 子类可以置换掉父类的可变部分，但是子类却不可以改变模板方法所代表的顶级逻辑！
+
+---
+
+## Summary
+
+> Christopher Alexander:
+
+>  <small>  It is possible to make buildings by stringing together patterns, in a rather loose way. A building made like this, is an assembly of patterns. It is not dense. It is not profound. But it is also possible to put patterns together in such a way that many patterns overlap in the same physical space: the building is very dense; it has many meanings captured in a small space; and through this density, it becomes profound. </small>
+    
+>  -- A Pattern Language [AIX+77, page xli]
+
+
+---
+
+## Remember
+
+> In theory practice is the same as theory. In practice it isn't. 			
+                        	—— Adam Smith 
+
+> 纸上得来终觉浅，绝知此事要躬行。
+	                    		—— 陆游·宋
+
+
+---
+
+## Are you ready?
 
 葫芦娃大战妖精 -----> 植物大战僵尸！
 
