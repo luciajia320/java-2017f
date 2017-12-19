@@ -234,6 +234,80 @@ class Monitor implements ActionListener {
 
 - 多线程使用下需要注意的问题！
 
+---
+
+## 懒汉式
+
+```java
+public class LazySingleton {
+	private static LazySingleton instance = null;
+	protected LazySingleton(){
+		System.out.println("Singleton's consturct method is invoked. " +
+				"This method should not be public");
+	}
+	//is it thread-safe? how to?
+	public static LazySingleton getInstance(){
+		if (instance == null){
+			instance = new LazySingleton();
+		}
+		return instance;
+	}
+	public void operation(){
+		System.out.println("LazySignleton.operation() is executed");
+	}
+}
+
+```
+
+---
+
+## 饿汉式
+
+```java
+public class EagerSingleton {
+	//is it thread-safe? 
+    private static final EagerSingleton instance = new EagerSingleton() ;
+    
+    private EagerSingleton() {}
+    
+    public static EagerSingleton getInstance()
+    {
+        return instance ;
+    }
+	public void operation(){
+		System.out.println("EagerSignleton.operation() is executed");
+	}
+}
+
+```
+
+---
+
+## 线程安全
+
+```java
+public class ThreadSafeSingleton {
+	private static ThreadSafeSingleton instance = null;
+	protected ThreadSafeSingleton(){
+		System.out.println("Singleton's consturct method is invoked. " +
+				"This method should not be public");
+	}
+	//double-check locking
+	public static ThreadSafeSingleton getInstance(){
+		if (instance == null){
+			synchronized (ThreadSafeSingleton.class){
+				if(instance == null){
+					instance = new ThreadSafeSingleton();		
+				}
+			}
+		}
+		return instance;
+	}
+	public void operation(){
+		System.out.println("ThreadSafeSingleton.operation() is executed");
+	}
+}
+```
 
 ---
 
@@ -481,7 +555,7 @@ public boolean action(Event event, Object obj){
 
 ![](http://yp.njuics.cn:7911/Observer2.png)<!-- .element height="50%" width="50%" -->
 
-<span style="color:#0099ff">注意：发出改变请求的Observer对象并不立即更新,而是将其推迟到它从目标得到一个通知之后。Notify不总是由目标对象调用。它也可被一个观察者或其它对象调用。</span><!-- .element: class="fragment" -->
+<span style="color:#0099ff"><small>注意：发出改变请求的Observer对象并不立即更新,而是将其推迟到它从目标得到一个通知之后。Notify不总是由目标对象调用。它也可被一个观察者或其它对象调用。</small></span><!-- .element: class="fragment" -->
 
 ---
 
