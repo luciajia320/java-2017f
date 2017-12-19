@@ -568,6 +568,54 @@ public boolean action(Event event, Object obj){
 
 ---
 
+## Java Observer
+
+```java
+import java.util.Observable;
+
+public class Watched extends Observable {
+	private String data = "";
+	
+	public String retrieveData(){
+		return data;
+	}
+	
+	public void changeData(String data){
+		if(!this.data.equals(data)){
+			this.data = data;
+			setChanged();			
+		}	
+		notifyObservers();
+	}
+}
+
+```
+
+---
+
+## Java Observer
+
+```java
+import java.util.Observable;
+import java.util.Observer;
+
+public class Watcher implements Observer {
+
+	public Watcher(Watched w){
+		w.addObserver(this);
+	}
+	
+	public void update(Observable obj, Object arg) {
+		System.out.println("Data has been changed to "+((Watched)obj).retrieveData()+"");
+
+	}
+
+}
+
+```
+
+---
+
 ## 模版方法
 
 - 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
