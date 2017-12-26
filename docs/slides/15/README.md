@@ -200,12 +200,11 @@ public class TestActionEvent {
   
 }  
   
-class Monitor implements ActionListener {  
+static class Monitor implements ActionListener {  
   
     @Override  
     public void actionPerformed(ActionEvent e) {  
-        System.out.println("a button has been pressed\n" + 
-        "The relative info is:" + e.getActionCommand());  
+        System.out.println(e);  
     }  
   
 } 
