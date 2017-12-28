@@ -1,5 +1,5 @@
 
-## 范型 Generics
+## 泛型 Generics
 
 
 <small>--这可能是《Thinking in Java》中最难理解的一章。</small>
@@ -205,7 +205,7 @@ public class SSDComputer{
 
 ---
 
-## 用范型来做
+## 用泛型来做
 
 ``` java
 public class Computer<T extends Disk>{
@@ -359,7 +359,7 @@ public class Holder<T> {
 
 ---
 
-## 范型的实际实现
+## 泛型的实际实现
 
 - 对泛型的处理全部集中在编译期，在编译时，编译器会执行如下操作。
   - 会将泛型类的类型参数都用边界类型替换。
@@ -369,7 +369,7 @@ public class Holder<T> {
 
 ---
 
-## 如果真想生成范型对象？
+## 如果真想生成泛型对象？
 
 ```java
 class Holder<T>{
